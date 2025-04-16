@@ -26,7 +26,7 @@ public class Numbers_01 {
 		System.out.println(listEven);
 
 		//odd
-		List<Integer> listOdd = numbers.stream().filter(i -> i % 2 != 0).toList();
+		List<Integer> listOdd = numbers.stream().filter(MyClass::checkEvenOdd).toList();
 		System.out.println(listOdd);
 		
 		//starting with 4
@@ -42,6 +42,16 @@ public class Numbers_01 {
 		
 		List<String> listSorted = numbers.stream().map(n -> n.toString()).sorted().sorted((a, b) -> Integer.compare(a.length(), b.length())).toList();
 		System.out.println(listSorted);
+	}
+	
+	class MyClass{
+		
+		int i = 0;
+		
+		static boolean checkEvenOdd(Integer i) {
+			if(i % 2 != 0) return true;
+			else return false;
+		}
 	}
 
 }
