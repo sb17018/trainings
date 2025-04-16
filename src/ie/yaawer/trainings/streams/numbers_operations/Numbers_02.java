@@ -19,10 +19,14 @@ public class Numbers_02 {
 		System.out.println(maxNumber);
 		maxNumber = numbers.stream().max((a,b) -> a.compareTo(b)).get();
 		System.out.println(maxNumber);
+		maxNumber = numbers.stream().max(Comparable::compareTo).get();
+		System.out.println(maxNumber);
 		
 		int minNumber = numbers.stream().min(Comparator.comparing(Integer::valueOf)).get();
 		System.out.println(minNumber);
 		minNumber = numbers.stream().min((a,b) -> a.compareTo(b)).get();
+		System.out.println(minNumber);
+		minNumber = numbers.stream().min(Comparable::compareTo).get();
 		System.out.println(minNumber);
 
 	}
