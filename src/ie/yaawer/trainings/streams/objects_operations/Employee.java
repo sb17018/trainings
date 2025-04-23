@@ -57,5 +57,11 @@ public class Employee {
 	public void setJoiningDate(LocalDate joiningDate) {
 		this.joiningDate = joiningDate;
 	}
+
+	@Override
+	public String toString() {
+		return "Employee:\n\tname:\t" + name + ",\n\tdepartment:\t" + department + ",\n\tsalary:\t" + salary + ",\n\tgender:\t" + gender
+				+ ",\n\tjoining date:\t" + joiningDate + "\n";
+	}
 	
 }
