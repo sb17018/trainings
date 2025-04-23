@@ -3,6 +3,7 @@ package ie.yaawer.trainings.streams.objects_operations;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -87,6 +88,24 @@ public class App {
 		Map<String, Map<String, Long>> emplsByGenderTwoGroupings = empList.stream().collect(Collectors.groupingBy(Employee::getDepartment, Collectors.groupingBy(Employee::getGender, Collectors.counting())));
 		System.out.println(emplsByGenderTwoGroupings.get("IT"));
 		
+		// statistics
+		DoubleSummaryStatistics summaryStatistics = empList.stream().mapToDouble(empl -> empl.getSalary()).summaryStatistics();
+		System.out.println(summaryStatistics);
+		
+		// ordering employees
+		List<Employee> listSalaryOrder = empList.stream().sorted(Comparator.comparingDouble(Employee::getSalary)).toList();
+		System.out.println(listSalaryOrder );
+		
+		List<Employee> listSalaryOrderDesc = empList.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).toList();
+		System.out.println(listSalaryOrderDesc);
+		
+		// selection some employees
+		List<Employee> listTop3 = empList.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).limit(3).toList();
+		System.out.println("Top 3:" + listTop3);
+		
+		// average by genders
+		Map<String, Double> averageByGender = empList.stream().collect(Collectors.groupingBy(Employee::getGender, Collectors.averagingDouble(Employee::getSalary)));
+		System.out.println("Avearge by gender:" + averageByGender);
 		
 		Logger logger = Logger.getLogger("Status Logger");
 		
